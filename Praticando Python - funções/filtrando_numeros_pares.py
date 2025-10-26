@@ -1,3 +1,21 @@
+"""
+Módulo para coleta, filtragem e exibição de números pares.
+
+Este módulo implementa um programa interativo que solicita números inteiros
+positivos ao usuário, filtra apenas os números pares e os exibe na tela.
+
+Exemplo de uso:
+    $ python filtrando_numeros_pares.py
+    
+    Digite 10 números inteiros positivos:
+    
+    Número 1/10: 5
+    Número 2/10: 8
+    ...
+    
+    8 12 20
+"""
+
 # Importa o tipo List do módulo typing para fazer anotações de tipo
 # Isso ajuda a indicar que uma função trabalha com listas
 from typing import List 
@@ -5,6 +23,37 @@ from typing import List
 # Define uma função que recebe uma mensagem (texto) e retorna um número inteiro
 # Esta função é responsável por validar se o usuário digitou um número válido
 def verificar_numero_fornecido(mensagem:str) -> int:
+    """
+    Solicita e valida um número inteiro positivo do usuário.
+    
+    A função continua solicitando entrada até que o usuário forneça um número
+    inteiro válido, positivo e diferente de zero. Exibe mensagens de erro
+    apropriadas para entradas inválidas.
+    
+    Args:
+        mensagem (str): Mensagem a ser exibida ao solicitar o número do usuário.
+    
+    Returns:
+        int: Número inteiro positivo válido fornecido pelo usuário.
+    
+    Raises:
+        Nenhuma exceção é propagada. Erros são tratados internamente.
+    
+    Examples:
+        >>> numero = verificar_numero_fornecido("Digite um número: ")
+        Digite um número: -5
+        Digite apenas números positivos!
+        Digite um número: 0
+        O número não pode ser igual a zero!
+        Digite um número: 10
+        >>> print(numero)
+        10
+    
+    Note:
+        - Números negativos não são aceitos
+        - Zero não é aceito
+        - Apenas números inteiros são válidos (não aceita decimais)
+    """
 
     # Cria um loop infinito que só para quando o usuário digitar um número válido
     while True:
@@ -35,6 +84,37 @@ def verificar_numero_fornecido(mensagem:str) -> int:
 # Define uma função que coleta vários números do usuário
 # Recebe quantos números quer coletar (padrão é 10) e retorna uma lista de números
 def solicitar_numero(maximo_de_numeros: int = 10) -> List[int]:
+    """
+    Coleta múltiplos números inteiros positivos do usuário.
+    
+    Solicita ao usuário uma quantidade específica de números inteiros positivos,
+    validando cada entrada através da função verificar_numero_fornecido().
+    Exibe um contador de progresso durante a coleta.
+    
+    Args:
+        maximo_de_numeros (int, optional): Quantidade de números a serem coletados.
+            Valor padrão é 10.
+    
+    Returns:
+        List[int]: Lista contendo todos os números válidos fornecidos pelo usuário,
+            na ordem em que foram digitados.
+    
+    Examples:
+        >>> numeros = solicitar_numero(3)
+        
+        Digite 3 números inteiros positivos:
+        
+        Número 1/3: 5
+        Número 2/3: 8
+        Número 3/3: 12
+        >>> print(numeros)
+        [5, 8, 12]
+    
+    Note:
+        - A função não retorna até que todos os números sejam coletados
+        - Cada número passa pela validação da função verificar_numero_fornecido()
+        - O progresso é exibido no formato "Número X/Y"
+    """
 
     # Cria uma lista vazia onde os números digitados serão armazenados
     numeros = []
@@ -60,6 +140,35 @@ def solicitar_numero(maximo_de_numeros: int = 10) -> List[int]:
 # Define uma função que filtra apenas os números pares de uma lista
 # Recebe uma lista de números e retorna outra lista só com os pares
 def filtrar_numeros_pares(numeros: List[int]) -> List[int]:
+    """
+    Filtra e retorna apenas os números pares de uma lista.
+    
+    Utiliza a função filter() com uma expressão lambda para identificar
+    números pares (divisíveis por 2 sem resto).
+    
+    Args:
+        numeros (List[int]): Lista de números inteiros a serem filtrados.
+    
+    Returns:
+        List[int]: Nova lista contendo apenas os números pares da lista original,
+            mantendo a ordem original. Lista vazia se não houver números pares.
+    
+    Examples:
+        >>> lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        >>> pares = filtrar_numeros_pares(lista)
+        >>> print(pares)
+        [2, 4, 6, 8, 10]
+        
+        >>> lista_impares = [1, 3, 5, 7, 9]
+        >>> pares = filtrar_numeros_pares(lista_impares)
+        >>> print(pares)
+        []
+    
+    Note:
+        - Um número é considerado par se o resto da divisão por 2 é zero (n % 2 == 0)
+        - A lista original não é modificada
+        - A ordem dos elementos é preservada
+    """
 
     # Usa a função filter() para filtrar números pares
     # lambda x: x % 2 == 0 é uma função anônima que verifica se x é par
@@ -74,11 +183,38 @@ def filtrar_numeros_pares(numeros: List[int]) -> List[int]:
 # Define uma função que exibe os números pares na tela
 # Recebe uma lista de números pares e não retorna nada (deveria ser -> None)
 def exibir_numeros_pares(pares: List[int]) -> int:
+    """
+    Exibe os números pares na tela em uma única linha.
+    
+    Imprime todos os números da lista fornecida separados por espaços.
+    Se a lista estiver vazia, exibe uma mensagem informativa.
+    
+    Args:
+        pares (List[int]): Lista de números pares a serem exibidos.
+    
+    Returns:
+        int: Tipo de retorno incorreto na assinatura (deveria ser None).
+            A função não retorna nenhum valor efetivamente.
+    
+    Examples:
+        >>> numeros = [2, 4, 6, 8]
+        >>> exibir_numeros_pares(numeros)
+        2 4 6 8
+        
+        >>> lista_vazia = []
+        >>> exibir_numeros_pares(lista_vazia)
+        Nenhum número par foi encontrado.
+    
+    Note:
+        - Os números são impressos na mesma linha, separados por espaços
+        - Se a lista estiver vazia, exibe mensagem apropriada
+        - Não adiciona quebra de linha ao final da impressão
+    """
 
     # Verifica se a lista está vazia (not pares retorna True se lista vazia)
     if not pares:
         # Se não houver números pares, exibe esta mensagem
-        print('Nenhum nÃºmero par foi encontrado.')
+        print('Nenhum número par foi encontrado.')
 
     # Loop que percorre cada número par da lista
     for par in pares:
@@ -91,6 +227,39 @@ def exibir_numeros_pares(pares: List[int]) -> int:
 # Função principal que coordena a execução do programa
 # É como o "maestro" que chama as outras funções na ordem correta
 def main() -> None:
+    """
+    Função principal que orquestra o fluxo do programa.
+    
+    Coordena a execução sequencial das etapas do programa:
+    1. Coleta números do usuário
+    2. Filtra os números pares
+    3. Exibe os resultados na tela
+    
+    Returns:
+        None: Esta função não retorna nenhum valor.
+    
+    Examples:
+        >>> main()
+        
+        Digite 10 números inteiros positivos:
+        
+        Número 1/10: 3
+        Número 2/10: 8
+        Número 3/10: 15
+        Número 4/10: 22
+        Número 5/10: 7
+        Número 6/10: 10
+        Número 7/10: 5
+        Número 8/10: 12
+        Número 9/10: 9
+        Número 10/10: 16
+        
+        8 22 10 12 16
+    
+    Note:
+        - Utiliza o valor padrão de 10 números para coleta
+        - Imprime uma linha em branco antes de exibir os resultados
+    """
 
     # Chama a função que coleta os números do usuário
     # Armazena a lista de números na variável lista_de_numeros
