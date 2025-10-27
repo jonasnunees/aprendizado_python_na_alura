@@ -125,10 +125,7 @@ def listar_produtos(produtos: list[dict[str, float | str]]) -> None:
 def main() -> None:
 
     """
-    Exibe a lista de produtos cadastrados com seus respectivos valores.
-
-    Args:
-        produtos (list[dict[str, float | str]]): Lista de produtos para exibição.
+    Função principal que executa o fluxo de cadastro e exibição dos produtos.
     """
 
     produtos: list[dict[str, float | str]] = cadastrar_produtos()  # Chama a função para cadastrar produtos
