@@ -39,16 +39,6 @@ def verificar_numero_fornecido(mensagem:str) -> int:
     Raises:
         Nenhuma exceção é propagada. Erros são tratados internamente.
     
-    Examples:
-        >>> numero = verificar_numero_fornecido("Digite um número: ")
-        Digite um número: -5
-        Digite apenas números positivos!
-        Digite um número: 0
-        O número não pode ser igual a zero!
-        Digite um número: 10
-        >>> print(numero)
-        10
-    
     Note:
         - Números negativos não são aceitos
         - Zero não é aceito
@@ -99,17 +89,6 @@ def solicitar_numero(maximo_de_numeros: int = 10) -> List[int]:
         List[int]: Lista contendo todos os números válidos fornecidos pelo usuário,
             na ordem em que foram digitados.
     
-    Examples:
-        >>> numeros = solicitar_numero(3)
-        
-        Digite 3 números inteiros positivos:
-        
-        Número 1/3: 5
-        Número 2/3: 8
-        Número 3/3: 12
-        >>> print(numeros)
-        [5, 8, 12]
-    
     Note:
         - A função não retorna até que todos os números sejam coletados
         - Cada número passa pela validação da função verificar_numero_fornecido()
@@ -153,17 +132,6 @@ def filtrar_numeros_pares(numeros: List[int]) -> List[int]:
         List[int]: Nova lista contendo apenas os números pares da lista original,
             mantendo a ordem original. Lista vazia se não houver números pares.
     
-    Examples:
-        >>> lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        >>> pares = filtrar_numeros_pares(lista)
-        >>> print(pares)
-        [2, 4, 6, 8, 10]
-        
-        >>> lista_impares = [1, 3, 5, 7, 9]
-        >>> pares = filtrar_numeros_pares(lista_impares)
-        >>> print(pares)
-        []
-    
     Note:
         - Um número é considerado par se o resto da divisão por 2 é zero (n % 2 == 0)
         - A lista original não é modificada
@@ -195,15 +163,6 @@ def exibir_numeros_pares(pares: List[int]) -> int:
     Returns:
         int: Tipo de retorno incorreto na assinatura (deveria ser None).
             A função não retorna nenhum valor efetivamente.
-    
-    Examples:
-        >>> numeros = [2, 4, 6, 8]
-        >>> exibir_numeros_pares(numeros)
-        2 4 6 8
-        
-        >>> lista_vazia = []
-        >>> exibir_numeros_pares(lista_vazia)
-        Nenhum número par foi encontrado.
     
     Note:
         - Os números são impressos na mesma linha, separados por espaços
@@ -237,24 +196,6 @@ def main() -> None:
     
     Returns:
         None: Esta função não retorna nenhum valor.
-    
-    Examples:
-        >>> main()
-        
-        Digite 10 números inteiros positivos:
-        
-        Número 1/10: 3
-        Número 2/10: 8
-        Número 3/10: 15
-        Número 4/10: 22
-        Número 5/10: 7
-        Número 6/10: 10
-        Número 7/10: 5
-        Número 8/10: 12
-        Número 9/10: 9
-        Número 10/10: 16
-        
-        8 22 10 12 16
     
     Note:
         - Utiliza o valor padrão de 10 números para coleta
